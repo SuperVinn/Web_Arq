@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMU8086 - Arquitectura de Computadoras</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page">
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Tutorial</p>
+          <h1>EMU8086</h1>
+          <p class="hero-text">Una vista dedicada para el tutorial de ensamblador con ejemplos de código y pasos de aprendizaje claros.</p>
+          <div class="hero-figure hero-figure--small">
+            <img src="assets/icon-emu8086.svg" alt="Icono de EMU8086" />
+          </div>
+          <a class="cta-button" href="index.html">Volver al menú</a>
+        </div>
+        <div class="hero-card">
+          <p class="eyebrow">Resumen</p>
+          <p class="hero-card-text">Ideal para mostrar al profesor la parte de 8086 con una caja de código y una estructura pedagógica.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EMU8086</p>
+            <h2>Tutorial de ensamblador</h2>
+          </div>
+          <p class="section-description">Una vista previa de la ruta de aprendizaje para ensamblador, con diagramas simples y un contenedor de código estilizado que simula el flujo de instrucciones.</p>
+        </div>
+
+        <div class="grid-two">
+          <div class="card">
+            <div class="card-title">
+              <span class="badge">Pasos</span>
+              <span class="code-label">3 etapas</span>
+            </div>
+            <div class="feature-grid">
+              <div class="feature">
+                <h4>Introducción al ensamblador</h4>
+                <p>Conceptos clave de registros, memoria y segmentación para 8086.</p>
+              </div>
+              <div class="feature">
+                <h4>Estructura del programa</h4>
+                <p>Bloques de código, directivas y la organización de un archivo .asm.</p>
+              </div>
+              <div class="feature">
+                <h4>Ejemplo práctico</h4>
+                <p>Simulación de ejecución con instrucciones elementales y salida de datos.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="codigo-box">
+              <div class="codigo-header">
+                <span>contador_digitos.asm (EMU8086)</span>
+              </div>
+              <pre>
+; Programa para contar dígitos de un número en AX
+.model small
+.code
+main proc
+    MOV AX, 1234h   ; Número de prueba (4 dígitos hexadecimales)
+    XOR CX, CX      ; Limpiar CX (actuará como nuestro contador)
+    MOV BX, 10      ; Divisor base 10
+
+contar_loop:
+    XOR DX, DX      ; Limpiar DX para la división
+    DIV BX          ; Dividir AX entre 10 (Cociente en AX, Residuo en DX)
+    INC CX          ; Incrementamos el contador de dígitos
+    CMP AX, 0       ; ¿El cociente ya es cero?
+    JNE contar_loop ; Si no es cero, repetir el ciclo
+
+    ; Al finalizar, el registro CX contiene el valor 4
+    MOV AH, 4Ch
+    INT 21h
+main endp
+end main
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-note">
+      Volver al menú principal: <a class="ghost-button" href="index.html">Inicio</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arduino - Arquitectura de Computadoras</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page">
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Tutorial</p>
+          <h1>Arduino</h1>
+          <p class="hero-text">Una página dedicada a Arduino con pines, alimentación y un ejemplo `.ino` listo para mostrar.</p>
+          <div class="hero-figure hero-figure--small">
+            <img src="assets/icon-arduino.svg" alt="Icono de Arduino" />
+          </div>
+          <a class="cta-button" href="index.html">Volver al menú</a>
+        </div>
+        <div class="hero-card">
+          <p class="eyebrow">Resumen</p>
+          <p class="hero-card-text">Perfecto para explicar cómo se organiza el hardware y el código de Arduino en la presentación.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Arduino</p>
+            <h2>Guía visual de pines y código</h2>
+          </div>
+          <p class="section-description">Estructura visual para el tutorial de Arduino, mostrando pines y una sección de código <code>.ino</code> de ejemplo.</p>
+        </div>
+
+        <div class="grid-two">
+          <div class="card">
+            <div class="card-title">
+              <span class="badge">PIN</span>
+              <div>
+                <h3>Mapa de pines</h3>
+                <p>Zona de referencia para los pines analógicos, digitales y de alimentación.</p>
+              </div>
+            </div>
+            <div class="pin-grid">
+              <div class="pin-card">
+                <h4>Digital</h4>
+                <p>0-13: I/O digital para sensores, LEDs y comunicación.</p>
+              </div>
+              <div class="pin-card">
+                <h4>Analógico</h4>
+                <p>A0-A5: Lectura de valores variables de potenciómetros y sensores.</p>
+              </div>
+            </div>
+            <div class="pin-card" style="margin-top: 1rem;">
+              <h4>Alimentación</h4>
+              <p>5V, 3.3V y GND organizados con énfasis en conexiones seguras.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="codigo-box">
+              <div class="codigo-header">
+                <span>monitoreo_pines.ino (Arduino IDE)</span>
+              </div>
+              <pre>
+// Configuración de arquitectura Harvard/RISC
+const int ledPin = 13; // Pin digital integrado
+
+void setup() {
+  pinMode(ledPin, OUTPUT);    // Configura el pin 13 como salida digital
+  Serial.begin(9600);         // Inicializa la comunicación serial a 9600 bps
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH); // Envía 5V al pin (ENCENDIDO)
+  Serial.println("LED: Encendido");
+  delay(1000);                // Retardo de 1 segundo
+  
+  digitalWrite(ledPin, LOW);  // Envía 0V al pin (APAGADO)
+  Serial.println("LED: Apagado");
+  delay(1000);                // Retardo de 1 segundo
+}
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-note">
+      Volver al menú principal: <a class="ghost-button" href="index.html">Inicio</a>
+    </footer>
+  </div>
+</body>
+</html>
