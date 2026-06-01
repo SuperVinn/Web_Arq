@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="240" height="160">
+  <rect x="12" y="12" width="96" height="56" rx="6" fill="#fff8e6" stroke="#c79a2d"/>
+  <rect x="22" y="24" width="60" height="32" fill="#f5e8c6" stroke="#d7c599"/>
+  <path d="M24 40 C34 30, 46 50, 56 40 C66 30, 78 50, 88 40" fill="none" stroke="#5c4b2f" stroke-width="2"/>
+  <text x="60" y="68" font-size="7" text-anchor="middle" fill="#5c4b2f">Osciloscopio</text>
+</svg>

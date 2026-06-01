@@ -4,129 +4,88 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Diseño Web Educativa - Arquitectura de Computadoras</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#d6a617">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page">
   <div class="page-shell">
     <header class="hero landing-hero">
       <div class="landing-grid">
-        <aside class="side-panel">
-          <p class="eyebrow">Elige un tema</p>
-          <h3>Accede rápido</h3>
-          <div class="side-links">
-            <a class="nav-button" href="unidad1.html">Fundamentos</a>
-            <a class="nav-button" href="emu8086.html">EMU8086</a>
-            <a class="nav-button" href="arduino.html">Arduino</a>
-          </div>
-        </aside>
-
         <div class="hero-copy">
-          <p class="eyebrow">Arquitectura de Computadoras</p>
-          <h1>Diseño Web Educativa</h1>
-          <p class="hero-text">Presenta el material del curso con estilo oscuro, navegación clara y páginas dedicadas para cada tema.</p>
-          <div class="hero-figure">
-            <img src="assets/hero-illustration.svg" alt="Ilustración de diseño educativo" />
-          </div>
+          <p class="eyebrow">Microsite educativo</p>
+          <h1>Arquitectura de Computadoras</h1>
+          <p class="hero-text">Una mini-guía visual para el curso: historia, conceptos clave y una ruta única hacia los temas principales.</p>
+          <p class="hero-text">Navega desde un solo punto de entrada y explora Fundamentos, EMU8086 o Arduino sin repetir accesos.</p>
           <div class="hero-actions">
-            <a class="cta-button" href="emu8086.html">Ver EMU8086</a>
-            <a class="ghost-button" href="arduino.html">Ver Arduino</a>
+            <a class="cta-button" href="unidad1.html">Fundamentos</a>
+            <a class="ghost-button" href="emu8086.html">EMU8086</a>
+            <a class="ghost-button" href="arduino.html">Arduino</a>
           </div>
         </div>
 
-        <aside class="side-panel">
-          <p class="eyebrow">Panel de acceso</p>
-          <h3>Temas disponibles</h3>
-          <p class="hero-card-text">Cada opción abre una sección propia, perfecta para la presentación y revisión del profesor.</p>
-        </aside>
+        <div class="hero-visual">
+          <img src="assets/images/hero-banner.svg" alt="Computadora y circuitos" />
+        </div>
       </div>
     </header>
 
     <main class="content">
-      <section class="panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Enlaces directos</p>
-            <h2>Selecciona una sección</h2>
+      <section class="panel panel-grid">
+        <article class="panel-block">
+          <p class="eyebrow">Historia</p>
+          <h2>De los primeros chips a la clase</h2>
+          <p>Introduce la evolución de la arquitectura de computadores, desde los primeros procesadores hasta los microcontroladores, con contexto para el curso.</p>
+        </article>
+
+        <article class="panel-block">
+          <p class="eyebrow">Conceptos</p>
+          <h2>Arquitectura y organización</h2>
+          <p>Explica los conceptos clave de manera clara: qué es la arquitectura, cómo se organiza el hardware y por qué es importante en sistemas reales.</p>
+        </article>
+
+        <article class="panel-block panel-topics">
+          <p class="eyebrow">Temas</p>
+          <h2>¿Qué quieres ver primero?</h2>
+          <div class="grid-two topic-links">
+            <a class="card accent-card link-card" href="unidad1.html">
+              <div class="card-title">
+                <div class="card-icon">
+                  <img src="assets/icons/book.svg" alt="Icono de fundamentos" />
+                </div>
+                <div>
+                  <h3>Fundamentos</h3>
+                  <p>Arquitectura vs Organización y Microprocesador vs Microcontrolador.</p>
+                </div>
+              </div>
+            </a>
+
+            <a class="card accent-card link-card" href="emu8086.html">
+              <div class="card-title">
+                <div class="card-icon">
+                  <img src="assets/icons/cpu.svg" alt="Icono de EMU8086" />
+                </div>
+                <div>
+                  <h3>EMU8086</h3>
+                  <p>Tutorial de ensamblador con código y pasos clave.</p>
+                </div>
+              </div>
+            </a>
+
+            <a class="card accent-card link-card" href="arduino.html">
+              <div class="card-title">
+                <div class="card-icon">
+                  <img src="assets/icons/arduino.svg" alt="Icono de Arduino" />
+                </div>
+                <div>
+                  <h3>Arduino</h3>
+                  <p>Pines, alimentación y ejemplo de código .ino.</p>
+                </div>
+              </div>
+            </a>
           </div>
-          <p class="section-description">Navega rápido entre los temas sin repetir información en la página inicial.</p>
-        </div>
-
-        <div class="grid-two">
-          <a class="card accent-card link-card" href="unidad1.html">
-            <div class="card-title">
-              <div class="card-icon">
-                <img src="assets/icon-fundamentos.svg" alt="Icono de fundamentos" />
-              </div>
-              <div>
-                <h3>Fundamentos</h3>
-                <p>Arquitectura vs Organización y Microprocesador vs Microcontrolador.</p>
-              </div>
-            </div>
-          </a>
-
-          <a class="card accent-card link-card" href="emu8086.html">
-            <div class="card-title">
-              <div class="card-icon">
-                <img src="assets/icon-emu8086.svg" alt="Icono de EMU8086" />
-              </div>
-              <div>
-                <h3>EMU8086</h3>
-                <p>Tutorial de ensamblador con código y pasos clave.</p>
-              </div>
-            </div>
-          </a>
-
-          <a class="card accent-card link-card" href="arduino.html">
-            <div class="card-title">
-              <div class="card-icon">
-                <img src="assets/icon-arduino.svg" alt="Icono de Arduino" />
-              </div>
-              <div>
-                <h3>Arduino</h3>
-                <p>Pines, alimentación y ejemplo de código .ino.</p>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section class="panel responsive-section images-panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Diseño Responsive</p>
-            <h2>Diseño Web Responsivo</h2>
-          </div>
-          <p class="section-description">Se le llama <strong>Diseño Web Responsivo</strong> (o <em>Responsive Web Design</em> en inglés). También es muy común escucharlo simplemente como <strong>diseño adaptable</strong>.
-
-Esta técnica consiste en crear un sitio web de manera que la estructura, las imágenes y los textos se reacomoden, escalen o cambien por completo de forma automática según el tamaño de la pantalla del usuario (desde un celular pequeño, pasando por una tablet, hasta un monitor gigante de PC).</p>
-        </div>
-
-        <div class="responsive-grid">
-          <div>
-            <p class="eyebrow">¿Cómo funciona detrás de escena?</p>
-            <div class="feature">
-              <p><strong>Grid y Flexbox:</strong> Son sistemas de diseño en CSS que permiten que las cajas de contenido se estiren, se encojan o se muevan de fila a columna de manera fluida.</p>
-              <p><strong>Media Queries:</strong> Son reglas de CSS que le dicen al navegador cómo adaptar estilos según el ancho de la pantalla.</p>
-              <p><strong>Imágenes y unidades relativas:</strong> En lugar de usar tamaños fijos, se usan porcentajes o `max-width:100%` para evitar desbordes.</p>
-            </div>
-          </div>
-
-          <div>
-            <p class="eyebrow">Imágenes de objetos físicos</p>
-            <div class="images-grid">
-              <div class="image-card"><img src="assets/images/book.svg" alt="Libro"><p>Libro</p></div>
-              <div class="image-card"><img src="assets/images/cup.svg" alt="Taza"><p>Taza</p></div>
-              <div class="image-card"><img src="assets/images/hammer.svg" alt="Martillo"><p>Martillo</p></div>
-              <div class="image-card"><img src="assets/images/ball.svg" alt="Pelota"><p>Pelota</p></div>
-              <div class="image-card"><img src="assets/images/pencil.svg" alt="Lápiz"><p>Lápiz</p></div>
-              <div class="image-card"><img src="assets/images/ruler.svg" alt="Regla"><p>Regla</p></div>
-              <div class="image-card"><img src="assets/images/bulb.svg" alt="Bombilla"><p>Bombilla</p></div>
-              <div class="image-card"><img src="assets/images/calc.svg" alt="Calculadora"><p>Calculadora</p></div>
-              <div class="image-card"><img src="assets/images/screwdriver.svg" alt="Destornillador"><p>Destornillador</p></div>
-              <div class="image-card"><img src="assets/images/phone.svg" alt="Teléfono"><p>Teléfono</p></div>
-            </div>
-          </div>
-        </div>
+        </article>
       </section>
     </main>
 

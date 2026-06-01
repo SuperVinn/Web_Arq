@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="240" height="160">
+  <rect x="8" y="18" width="104" height="44" rx="4" fill="#fff8e6" stroke="#c79a2d"/>
+  <g fill="#e8d7b0">
+    <rect x="18" y="26" width="8" height="28" rx="1"/>
+    <rect x="32" y="26" width="8" height="28" rx="1"/>
+    <rect x="46" y="26" width="8" height="28" rx="1"/>
+  </g>
+  <text x="60" y="64" font-size="8" text-anchor="middle" fill="#5c4b2f">Breadboard</text>
+</svg>

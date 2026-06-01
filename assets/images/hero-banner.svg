@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Ilustración de arquitectura de computadores" preserveAspectRatio="xMidYMid meet">
+  <rect width="900" height="520" rx="36" fill="#f8efd8" />
+  <rect x="60" y="80" width="340" height="180" rx="28" fill="#fff" stroke="#d6a617" stroke-width="8" />
+  <rect x="150" y="120" width="180" height="26" rx="12" fill="#d6a617" opacity="0.22" />
+  <rect x="150" y="170" width="250" height="20" rx="10" fill="#d6a617" opacity="0.16" />
+  <rect x="150" y="210" width="220" height="16" rx="8" fill="#d6a617" opacity="0.12" />
+  <rect x="480" y="90" width="320" height="260" rx="28" fill="#fff" stroke="#8a6b1a" stroke-width="6" />
+  <rect x="520" y="130" width="240" height="60" rx="16" fill="#f4e4b7" />
+  <text x="680" y="170" font-family="Poppins, sans-serif" font-size="38" font-weight="700" fill="#5c4320" text-anchor="middle">PC Retro</text>
+  <rect x="590" y="220" width="220" height="18" rx="9" fill="#d6a617" opacity="0.3" />
+  <rect x="520" y="315" width="48" height="48" rx="14" fill="#d6a617" />
+  <rect x="640" y="315" width="48" height="48" rx="14" fill="#d6a617" />
+  <rect x="760" y="315" width="48" height="48" rx="14" fill="#d6a617" />
+  <circle cx="220" cy="340" r="46" fill="#d6a617" opacity="0.22" />
+  <circle cx="140" cy="420" r="28" fill="#d6a617" opacity="0.18" />
+  <path d="M120 420C170 380 230 430 290 390" stroke="#8a6b1a" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.6" />
+  <path d="M380 330H780" stroke="#8a6b1a" stroke-width="12" stroke-linecap="round" opacity="0.35" />
+  <path d="M380 380H780" stroke="#8a6b1a" stroke-width="12" stroke-linecap="round" opacity="0.25" />
+  <path d="M380 430H780" stroke="#8a6b1a" stroke-width="12" stroke-linecap="round" opacity="0.18" />
+  <circle cx="740" cy="150" r="12" fill="#d6a617" opacity="0.45" />
+  <circle cx="790" cy="190" r="10" fill="#d6a617" opacity="0.35" />
+</svg>

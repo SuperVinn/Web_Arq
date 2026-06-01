@@ -8,20 +8,22 @@
 </head>
 <body class="page">
   <div class="page-shell">
-    <header class="hero">
-      <div class="hero-inner">
-        <div>
+    <header class="hero topic-hero">
+      <div class="topic-hero-grid">
+        <div class="hero-copy">
           <p class="eyebrow">Fundamentos</p>
           <h1>Arquitectura vs Organización</h1>
           <p class="hero-text">Aprende las diferencias clave entre la arquitectura lógica y la organización física del computador.</p>
-          <div class="hero-figure hero-figure--small">
-            <img src="assets/icon-fundamentos.svg" alt="Icono de fundamentos" />
+          <div class="hero-actions">
+            <a class="cta-button" href="index.html">Volver al menú</a>
           </div>
-          <a class="cta-button" href="index.html">Volver al menú</a>
+          <div class="hero-card">
+            <p class="eyebrow">Resumen</p>
+            <p class="hero-card-text">Dos temas fundamentales: diseño de funciones y estructura frente a implementación interna y control de hardware.</p>
+          </div>
         </div>
-        <div class="hero-card">
-          <p class="eyebrow">Resumen</p>
-          <p class="hero-card-text">Dos temas fundamentales: diseño de funciones y estructura frente a implementación interna y control de hardware.</p>
+        <div class="hero-visual">
+          <img src="assets/images/fund-osc.svg" alt="Arquitectura de computadores" />
         </div>
       </div>
     </header>
@@ -36,15 +38,19 @@
           <p class="section-description">Explica de forma visual y moderna cómo se diferencian los conceptos fundamentales de arquitectura y organización, junto con una comparación de microprocesadores y microcontroladores.</p>
         </div>
 
-        <div class="grid-two">
+        <div class="topic-body-grid">
           <div class="card-comparativa">
-            <h3><i class="fa-solid fa-layer-group"></i> Arquitectura vs Organización</h3>
+            <h3>Arquitectura vs Organización</h3>
             <p><strong>Arquitectura (Diseño Lógico):</strong> Atributos del sistema visibles para el programador de bajo nivel. Incluye el conjunto de instrucciones (ISA), número de bits para datos y técnicas de direccionamiento.</p>
             <p class="mt-2"><strong>Organización (Implementación Física):</strong> Cómo se conectan operativamente los componentes. Incluye señales de control de buses, interfaces de memoria y la tecnología de los circuitos.</p>
           </div>
 
+          <figure class="feature-figure">
+            <img src="assets/images/fund-chip.svg" alt="Circuito de computadora" />
+            <figcaption>Comparativas visuales que ayudan a entender arquitectura y organización.</figcaption>
+          </figure>
           <div class="card-comparativa">
-            <h3><i class="fa-solid fa-code-compare"></i> Microprocesador vs Microcontrolador</h3>
+            <h3>Microprocesador vs Microcontrolador</h3>
             <p><strong>Microprocesador (μP):</strong> Circuito integrado que aloja únicamente la CPU (Ej: familia ix86). Requiere memoria RAM, ROM y periféricos externos para funcionar en una placa base.</p>
             <p class="mt-2"><strong>Microcontrolador (μC):</strong> Un sistema computacional completo integrado en un solo chip de silicio (Ej: ATmega328P de Arduino). Contiene internamente la CPU, RAM, memoria Flash y puertos E/S.</p>
           </div>

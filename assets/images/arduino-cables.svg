@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="240" height="160">
+  <path d="M18 30 C40 20, 80 60, 102 50" stroke="#c79a2d" stroke-width="4" fill="none"/>
+  <path d="M18 44 C36 54, 76 20, 102 34" stroke="#5c4b2f" stroke-width="4" fill="none"/>
+  <text x="60" y="72" font-size="7" text-anchor="middle" fill="#5c4b2f">Cables</text>
+</svg>

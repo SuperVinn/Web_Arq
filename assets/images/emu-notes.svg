@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="240" height="160">
+  <rect x="14" y="12" width="92" height="56" rx="4" fill="#fff8e6" stroke="#c79a2d"/>
+  <line x1="22" y1="26" x2="98" y2="26" stroke="#5c4b2f" stroke-width="1"/>
+  <line x1="22" y1="36" x2="98" y2="36" stroke="#5c4b2f" stroke-width="1"/>
+  <line x1="22" y1="46" x2="98" y2="46" stroke="#5c4b2f" stroke-width="1"/>
+  <text x="60" y="64" font-size="7" text-anchor="middle" fill="#5c4b2f">Notas</text>
+</svg>
