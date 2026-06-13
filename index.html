@@ -3,60 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diseño Web Educativa - Arquitectura de Computadoras</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <meta name="theme-color" content="#d6a617">
+  <title>Arquitectura de Computadoras — Microsite educativo</title>
+  <meta name="description" content="Mini-guía visual para el curso de Arquitectura de Computadoras: fundamentos, EMU8086 y Arduino." />
+  <meta name="theme-color" content="#e2e2ff" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page">
   <div class="page-shell">
+
     <header class="hero landing-hero">
+      <div class="hero-topbar"></div>
       <div class="landing-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Microsite educativo</p>
+
+        <div class="hero-copy stagger">
+          <p class="eyebrow">Microsite educativo · UNI</p>
           <h1>Arquitectura de Computadoras</h1>
-          <p class="hero-text">Una mini-guía visual para el curso: historia, conceptos clave y una ruta única hacia los temas principales.</p>
-          <p class="hero-text">Navega desde un solo punto de entrada y explora Fundamentos, EMU8086 o Arduino sin repetir accesos.</p>
+          <p class="hero-text">
+            Guía visual del curso: historia del hardware, conceptos clave y
+            acceso directo a los tres bloques del semestre.
+          </p>
           <div class="hero-actions">
             <a class="cta-button" href="unidad1.html">Fundamentos</a>
             <a class="ghost-button" href="emu8086.html">EMU8086</a>
             <a class="ghost-button" href="arduino.html">Arduino</a>
           </div>
+          <div class="hero-card">
+            <p class="eyebrow" style="font-size:0.62rem;">Integrantes</p>
+            <p class="hero-card-text">Sergio · Ervin · Angel — Presentación de Arquitectura de Computadoras</p>
+          </div>
         </div>
 
         <div class="hero-visual">
-          <img src="assets/images/hero-banner.svg" alt="Computadora y circuitos" />
+          <img src="assets/images/hero-banner.svg" alt="Ilustración de circuitos y computadora" />
         </div>
+
       </div>
     </header>
 
     <main class="content">
-      <section class="panel panel-grid">
+
+      <section class="panel panel-grid stagger">
+
         <article class="panel-block">
           <p class="eyebrow">Historia</p>
-          <h2>De los primeros chips a la clase</h2>
-          <p>Introduce la evolución de la arquitectura de computadores, desde los primeros procesadores hasta los microcontroladores, con contexto para el curso.</p>
+          <h2>Del ENIAC a la clase</h2>
+          <p>
+            Tubos de vacío, transistores, circuitos integrados, microprocesadores.
+            Cada generación cambió el límite de lo posible y estableció los
+            conceptos que el curso explica hoy.
+          </p>
         </article>
 
         <article class="panel-block">
           <p class="eyebrow">Conceptos</p>
           <h2>Arquitectura y organización</h2>
-          <p>Explica los conceptos clave de manera clara: qué es la arquitectura, cómo se organiza el hardware y por qué es importante en sistemas reales.</p>
+          <p>
+            Arquitectura define <em>qué</em> hace el sistema.
+            Organización define <em>cómo</em> lo implementa el hardware.
+            La distinción es la base de todo el curso.
+          </p>
         </article>
 
-        <article class="panel-block panel-topics">
-          <p class="eyebrow">Temas</p>
-          <h2>¿Qué quieres ver primero?</h2>
-          <div class="grid-two topic-links">
+        <article class="panel-block panel-topics" style="grid-column: 1 / -1;">
+          <p class="eyebrow">Temas del semestre</p>
+          <h2>Elegí por dónde empezar</h2>
+
+          <div class="grid-two topic-links stagger" style="margin-top:1.1rem;">
+
             <a class="card accent-card link-card" href="unidad1.html">
               <div class="card-title">
                 <div class="card-icon">
-                  <img src="assets/icons/book.svg" alt="Icono de fundamentos" />
+                  <img src="assets/icons/book.svg" alt="" aria-hidden="true" />
                 </div>
                 <div>
                   <h3>Fundamentos</h3>
-                  <p>Arquitectura vs Organización y Microprocesador vs Microcontrolador.</p>
+                  <p style="margin-top:0.35rem;font-size:0.875rem;max-width:none;">
+                    Arquitectura vs Organización. Microprocesador vs Microcontrolador.
+                  </p>
                 </div>
               </div>
             </a>
@@ -64,11 +88,13 @@
             <a class="card accent-card link-card" href="emu8086.html">
               <div class="card-title">
                 <div class="card-icon">
-                  <img src="assets/icons/cpu.svg" alt="Icono de EMU8086" />
+                  <img src="assets/icons/cpu.svg" alt="" aria-hidden="true" />
                 </div>
                 <div>
                   <h3>EMU8086</h3>
-                  <p>Tutorial de ensamblador con código y pasos clave.</p>
+                  <p style="margin-top:0.35rem;font-size:0.875rem;max-width:none;">
+                    Von Neumann, registros internos, ensamblador Intel 8086.
+                  </p>
                 </div>
               </div>
             </a>
@@ -76,22 +102,32 @@
             <a class="card accent-card link-card" href="arduino.html">
               <div class="card-title">
                 <div class="card-icon">
-                  <img src="assets/icons/arduino.svg" alt="Icono de Arduino" />
+                  <img src="assets/icons/arduino.svg" alt="" aria-hidden="true" />
                 </div>
                 <div>
                   <h3>Arduino</h3>
-                  <p>Pines, alimentación y ejemplo de código .ino.</p>
+                  <p style="margin-top:0.35rem;font-size:0.875rem;max-width:none;">
+                    Pines, alimentación y ejemplo de código <code>.ino</code>.
+                  </p>
                 </div>
               </div>
             </a>
+
           </div>
         </article>
+
       </section>
+
     </main>
 
     <footer class="footer-note">
-      Maqueta de presentación para revisión: Diseño Web Educativa · Arquitectura de Computadoras
+      <span>Arquitectura de Computadoras</span>
+      <span style="opacity:0.3">///</span>
+      <span>Sergio · Ervin · Angel</span>
+      <span style="opacity:0.3">///</span>
+      <span>UNI</span>
     </footer>
+
   </div>
 </body>
 </html>

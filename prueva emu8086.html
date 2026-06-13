@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examen — EMU8086 · Arquitectura de Computadoras</title>
+  <meta name="description" content="Cuestionario interactivo sobre Von Neumann, registros del Intel 8086 y programación en ensamblador." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Quiz options ── */
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: var(--bg-4);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-md);
+      cursor: pointer;
+      transition:
+        border-color 160ms var(--ease-out),
+        background 160ms var(--ease-out);
+      color: var(--text-2);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .option-label::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05) 50%, transparent);
+      pointer-events: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .option-label:hover {
+        border-color: rgba(226,226,255,0.2);
+        background: var(--bg-5);
+        color: var(--text);
+      }
+    }
+
+    .option-label input[type="radio"] {
+      accent-color: var(--accent);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 0.18rem;
+      cursor: pointer;
+    }
+
+    /* Estados de validación */
+    .option-correct {
+      border-color: rgba(50,220,130,0.5) !important;
+      background: rgba(50,220,130,0.07) !important;
+      color: #4ade80 !important;
+      font-weight: 600;
+    }
+
+    .option-wrong {
+      border-color: rgba(239,68,68,0.5) !important;
+      background: rgba(239,68,68,0.07) !important;
+      color: #f87171 !important;
+    }
+
+    /* Quiz actions */
+    .quiz-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Result box */
+    .result-box {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.4rem;
+      border-radius: var(--r-lg);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      display: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1) 50%, transparent);
+    }
+
+    .result-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-details {
+      color: var(--text-2);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: none;
+    }
+
+    .score-accent { color: var(--accent); font-weight: 700; }
+    .score-correct { color: #4ade80; font-weight: 600; }
+    .score-wrong   { color: #f87171; font-weight: 600; }
+
+    /* Q number badge */
+    .q-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--bg-5);
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent-dim);
+      flex-shrink: 0;
+      margin-bottom: 0.6rem;
+    }
+  </style>
+</head>
+<body class="page">
+<div class="page-shell">
+
+  <!-- ░░░ HERO ░░░ -->
+  <header class="hero topic-hero">
+    <div class="hero-topbar"></div>
+    <div class="topic-hero-grid">
+      <div class="hero-copy stagger">
+        <p class="eyebrow">Evaluación interactiva · Unidades II y III</p>
+        <h1>Examen EMU8086</h1>
+        <p class="hero-text">
+          Von Neumann, chips de interfaz, registros del Intel 8086
+          y ejecución paso a paso en bajo nivel.
+        </p>
+        <div class="hero-actions">
+          <a class="cta-button" href="emu8086.html">← Volver a EMU8086</a>
+          <a class="ghost-button" href="index.html">Menú principal</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/images/emu-pc.svg" alt="Simulación EMU8086" />
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">5 preguntas · Selección múltiple</p>
+        <h2>Cuestionario de autoevaluación</h2>
+        <p class="section-description">
+          Al enviar, las respuestas incorrectas se marcan en rojo y la
+          solución correcta se revela en verde directamente en el examen.
+        </p>
+      </div>
+
+      <form id="quiz-form" style="display:flex;flex-direction:column;gap:1rem;">
+
+        <!-- Q1 -->
+        <div class="card-comparativa" id="q1-container">
+          <div class="q-number">01</div>
+          <h3>¿Cuál es la causa directa del "cuello de botella" en Von Neumann?</h3>
+          <div class="quiz-options">
+            <label class="option-label" id="lbl-q1-A">
+              <input type="radio" name="q1" value="A" />
+              <span>La separación física de la RAM en un banco exclusivo para instrucciones y otro para datos.</span>
+            </label>
+            <label class="option-label" id="lbl-q1-B">
+              <input type="radio" name="q1" value="B" />
+              <span>Las instrucciones y los datos comparten el mismo espacio de memoria y buses, impidiendo lecturas y escrituras simultáneas.</span>
+            </label>
+            <label class="option-label" id="lbl-q1-C">
+              <input type="radio" name="q1" value="C" />
+              <span>La conversión obligatoria de bytes hexadecimales a caracteres ASCII ralentiza el ciclo de reloj.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="card-comparativa" id="q2-container">
+          <div class="q-number">02</div>
+          <h3>¿Qué dispositivo evalúa prioridades y ordena al Intel 8086 pausar su tarea ante una interrupción externa?</h3>
+          <div class="quiz-options">
+            <label class="option-label" id="lbl-q2-A">
+              <input type="radio" name="q2" value="A" />
+              <span>El chip PPI 8255, configurando puertos paralelos de entrada y salida.</span>
+            </label>
+            <label class="option-label" id="lbl-q2-B">
+              <input type="radio" name="q2" value="B" />
+              <span>El Controlador Programable de Interrupciones PIC 8259, gestionando las señales de hardware del sistema.</span>
+            </label>
+            <label class="option-label" id="lbl-q2-C">
+              <input type="radio" name="q2" value="C" />
+              <span>El registro de segmento CS en combinación con el puntero de instrucciones IP.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="card-comparativa" id="q3-container">
+          <div class="q-number">03</div>
+          <h3>En el script de descomposición numérica, ¿cuál es el propósito de <code>DIV CL</code>?</h3>
+          <div class="quiz-options">
+            <label class="option-label" id="lbl-q3-A">
+              <input type="radio" name="q3" value="A" />
+              <span>Aislar el cociente en <code>AL</code> (decenas) y el residuo en <code>AH</code> (unidades) para imprimir cada dígito por separado.</span>
+            </label>
+            <label class="option-label" id="lbl-q3-B">
+              <input type="radio" name="q3" value="B" />
+              <span>Modificar directamente las banderas lógicas (Flags) antes de invocar la interrupción del reloj.</span>
+            </label>
+            <label class="option-label" id="lbl-q3-C">
+              <input type="radio" name="q3" value="C" />
+              <span>Cargar la dirección física en <code>DX</code> para saltarse el bloque de datos.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="card-comparativa" id="q4-container">
+          <div class="q-number">04</div>
+          <h3>¿Por qué es obligatorio incluir el carácter <code>$</code> al final de una variable definida con <code>DB</code>?</h3>
+          <div class="quiz-options">
+            <label class="option-label" id="lbl-q4-A">
+              <input type="radio" name="q4" value="A" />
+              <span>Activa el servicio de impresión indexada de caracteres <code>AH = 02h</code>.</span>
+            </label>
+            <label class="option-label" id="lbl-q4-B">
+              <input type="radio" name="q4" value="B" />
+              <span>Funciona como bandera de parada para el bus de datos bajo el servicio <code>AH = 09h</code> de <code>INT 21h</code>.</span>
+            </label>
+            <label class="option-label" id="lbl-q4-C">
+              <input type="radio" name="q4" value="C" />
+              <span>Limpia las colisiones lógicas entre las fronteras de los punteros <code>CS</code> y <code>DS</code>.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="card-comparativa" id="q5-container">
+          <div class="q-number">05</div>
+          <h3>¿En qué fase del ciclo de máquina la Unidad de Control traduce <code>B4 09</code> en <code>MOV AH, 09h</code>?</h3>
+          <div class="quiz-options">
+            <label class="option-label" id="lbl-q5-A">
+              <input type="radio" name="q5" value="A" />
+              <span>Fetch — extracción del opcode desde la dirección combinada <code>CS:IP</code>.</span>
+            </label>
+            <label class="option-label" id="lbl-q5-B">
+              <input type="radio" name="q5" value="B" />
+              <span>Decode — los decodificadores internos de la Unidad de Control interpretan el byte binario.</span>
+            </label>
+            <label class="option-label" id="lbl-q5-C">
+              <input type="radio" name="q5" value="C" />
+              <span>Execute — la ALU abre compuertas lógicas y actualiza el registro de Flags.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button type="button" class="cta-button" onclick="evaluarQuiz()">Enviar respuestas</button>
+          <button type="button" class="ghost-button" onclick="reiniciarQuiz()">Reiniciar examen</button>
+        </div>
+      </form>
+
+      <div id="result-box" class="result-box">
+        <div class="result-title" id="result-text"></div>
+        <p class="result-details" id="result-details"></p>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer-note">
+    <a class="ghost-button" href="emu8086.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;">← EMU8086</a>
+    <span style="opacity:0.3">///</span>
+    <span>Arquitectura de Computadoras · UNI</span>
+    <span style="opacity:0.3">///</span>
+    <a class="ghost-button" href="index.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;">Menú principal</a>
+  </footer>
+
+</div>
+
+<script>
+  const respuestasCorrectas = { q1:"B", q2:"B", q3:"A", q4:"B", q5:"B" };
+
+  function evaluarQuiz() {
+    const form = document.getElementById('quiz-form');
+    let nota = 0;
+    const total = Object.keys(respuestasCorrectas).length;
+
+    document.querySelectorAll('.option-label')
+      .forEach(el => el.classList.remove('option-correct','option-wrong'));
+
+    for (const key in respuestasCorrectas) {
+      const sel = form.elements[key].value;
+      const ok  = respuestasCorrectas[key];
+
+      if (!sel) {
+        document.getElementById(`lbl-${key}-${ok}`).classList.add('option-correct');
+        continue;
+      }
+
+      if (sel === ok) {
+        nota++;
+        document.getElementById(`lbl-${key}-${sel}`).classList.add('option-correct');
+      } else {
+        document.getElementById(`lbl-${key}-${sel}`).classList.add('option-wrong');
+        document.getElementById(`lbl-${key}-${ok}`).classList.add('option-correct');
+      }
+    }
+
+    const pct = Math.round((nota / total) * 100);
+    const aprobado = pct >= 70;
+
+    const box = document.getElementById('result-box');
+    box.style.display = 'block';
+    box.style.borderColor = aprobado
+      ? 'rgba(50,220,130,0.25)'
+      : 'rgba(239,68,68,0.25)';
+
+    document.getElementById('result-text').textContent =
+      aprobado ? '¡Examen aprobado! 🚀' : 'Examen no aprobado 📚';
+
+    document.getElementById('result-details').innerHTML =
+      `Acertaste <span class="score-accent">${nota}</span> de
+       <span class="score-accent">${total}</span> preguntas —
+       calificación final: <span class="score-accent">${pct}%</span>.<br><br>
+       Las respuestas incorrectas están marcadas en
+       <span class="score-wrong">rojo</span> y las correctas en
+       <span class="score-correct">verde</span> directamente en el examen.`;
+
+    box.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+
+  function reiniciarQuiz() {
+    document.getElementById('quiz-form').reset();
+    const box = document.getElementById('result-box');
+    box.style.display = 'none';
+    box.style.borderColor = '';
+    document.querySelectorAll('.option-label')
+      .forEach(el => el.classList.remove('option-correct','option-wrong'));
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+</script>
+</body>
+</html>

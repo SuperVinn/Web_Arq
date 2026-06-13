@@ -3,113 +3,364 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arduino - Arquitectura de Computadoras</title>
+  <title>Arduino — Arquitectura de Computadoras</title>
+  <meta name="description" content="Mapa de pines, alimentación y ejemplo de código .ino para Arduino Uno (ATmega328P)." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page">
-  <div class="page-shell">
-    <header class="hero topic-hero">
-      <div class="topic-hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Tutorial</p>
-          <h1>Arduino</h1>
-          <p class="hero-text">Una página dedicada a Arduino con pines, alimentación y un ejemplo `.ino` listo para mostrar.</p>
-          <div class="hero-actions">
-            <a class="cta-button" href="index.html">Volver al menú</a>
-          </div>
-          <div class="hero-card">
-            <p class="eyebrow">Resumen</p>
-            <p class="hero-card-text">Perfecto para explicar cómo se organiza el hardware y el código de Arduino en la presentación.</p>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <img src="assets/images/arduino-cables.svg" alt="Arduino board" />
+<div class="page-shell">
+
+  <!-- ░░░ HERO ░░░ -->
+  <header class="hero topic-hero">
+    <div class="hero-topbar"></div>
+    <div class="topic-hero-grid">
+      <div class="hero-copy stagger">
+        <p class="eyebrow">Tutorial · Hardware</p>
+        <h1>Arduino</h1>
+        <p class="hero-text">
+          El microcontrolador completo en un solo chip. Pines, alimentación,
+          arquitectura Harvard y un ejemplo <code>.ino</code> listo para ejecutar.
+        </p>
+        <div class="hero-actions">
+          <a class="cta-button" href="index.html">← Volver al menú</a>
+          <a class="ghost-button" href="emu8086.html">EMU8086 →</a>
         </div>
       </div>
-    </header>
+      <div class="hero-visual">
+        <img src="assets/images/arduino-cables.svg" alt="Arduino Uno — cables de conexión" />
+      </div>
+    </div>
+  </header>
 
-    <main class="content">
-      <section class="panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Arduino</p>
-            <h2>Guía visual de pines y código</h2>
+  <main class="content">
+
+    <!-- ░░░ BLOQUE 1 — MAPA DE PINES ░░░ -->
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">Hardware</p>
+        <h2>Mapa de pines — Arduino Uno</h2>
+        <p class="section-description">
+          El ATmega328P expone tres grupos de pines. Conocerlos es el primer
+          paso antes de conectar cualquier componente.
+        </p>
+      </div>
+
+      <div class="topic-body-grid stagger">
+
+        <!-- Digital -->
+        <div class="card-comparativa">
+          <div class="pin-header">
+            <span class="pin-badge pin-badge--digital">DIGITAL</span>
+            <h3>Pines 0 – 13</h3>
           </div>
-          <p class="section-description">Estructura visual para el tutorial de Arduino, mostrando pines y una sección de código <code>.ino</code> de ejemplo.</p>
+          <p style="margin-top:0.6rem;">
+            Entrada o salida digital. Cada pin maneja señales de <strong>0V (LOW)</strong>
+            o <strong>5V (HIGH)</strong>. Se configuran con <code>pinMode()</code>.
+          </p>
+          <ul class="card-list" style="margin-top:0.75rem;">
+            <li>Pines 3, 5, 6, 9, 10, 11 soportan <strong>PWM</strong> (señal analógica simulada, marcados con ~)</li>
+            <li>Pines 0 (RX) y 1 (TX) reservados para comunicación serial</li>
+            <li>Pin 13 tiene LED integrado en la placa</li>
+            <li>Corriente máxima por pin: <strong>40 mA</strong></li>
+          </ul>
         </div>
 
-        <div class="topic-body-grid">
-          <div class="card">
-            <div class="card-title">
-              <span class="badge">PIN</span>
-              <div>
-                <h3>Mapa de pines</h3>
-                <p>Zona de referencia para los pines analógicos, digitales y de alimentación.</p>
-              </div>
+        <!-- Analógico -->
+        <div class="card-comparativa">
+          <div class="pin-header">
+            <span class="pin-badge pin-badge--analog">ANALÓGICO</span>
+            <h3>Pines A0 – A5</h3>
+          </div>
+          <p style="margin-top:0.6rem;">
+            Entradas analógicas con <strong>conversor ADC de 10 bits</strong> integrado.
+            Leen voltajes entre 0V y 5V y los mapean a un valor de 0 a 1023.
+          </p>
+          <ul class="card-list" style="margin-top:0.75rem;">
+            <li>Resolución: 10 bits → 1024 niveles de lectura</li>
+            <li>Velocidad de conversión: ~10,000 lecturas por segundo</li>
+            <li>Lectura con <code>analogRead(A0)</code></li>
+            <li>Usos: potenciómetros, sensores de temperatura, luz (LDR)</li>
+          </ul>
+        </div>
+
+        <!-- Alimentación -->
+        <div class="card-comparativa">
+          <div class="pin-header">
+            <span class="pin-badge pin-badge--power">PODER</span>
+            <h3>Pines de alimentación</h3>
+          </div>
+          <p style="margin-top:0.6rem;">
+            Distribuyen energía al circuito externo. Siempre verificar voltaje
+            y corriente antes de conectar componentes.
+          </p>
+          <div class="power-grid" style="margin-top:0.85rem;">
+            <div class="power-row">
+              <span class="power-label">5V</span>
+              <span class="power-desc">Salida regulada — alimenta sensores y lógica 5V</span>
             </div>
-            <div class="pin-grid">
-              <div class="pin-card">
-                <h4>Digital</h4>
-                <p>0-13: I/O digital para sensores, LEDs y comunicación.</p>
-              </div>
-              <div class="pin-card">
-                <h4>Analógico</h4>
-                <p>A0-A5: Lectura de valores variables de potenciómetros y sensores.</p>
-              </div>
+            <div class="power-row">
+              <span class="power-label">3.3V</span>
+              <span class="power-desc">Salida regulada — para módulos WiFi/Bluetooth</span>
             </div>
-            <div class="pin-card" style="margin-top: 1rem;">
-              <h4>Alimentación</h4>
-              <p>5V, 3.3V y GND organizados con énfasis en conexiones seguras.</p>
+            <div class="power-row">
+              <span class="power-label">GND</span>
+              <span class="power-desc">Tierra común — referencia cero para todo el circuito</span>
+            </div>
+            <div class="power-row">
+              <span class="power-label">VIN</span>
+              <span class="power-desc">Entrada externa 7–12V cuando no se usa USB</span>
             </div>
           </div>
+        </div>
 
-          <figure class="feature-figure">
-            <img src="assets/images/arduino-led.svg" alt="Arduino prototipo" />
-            <figcaption>Breadboard con Arduino: conexión real para prototipos y pruebas.</figcaption>
-          </figure>
+        <!-- Visual Arduino -->
+        <figure class="feature-figure" style="align-self:start;">
+          <img src="assets/images/arduino-led.svg" alt="Arduino con LED en protoboard" />
+          <figcaption>Protoboard con Arduino — conexión básica LED en pin 13</figcaption>
+        </figure>
 
-          <div class="card images-row">
-            <img src="assets/images/arduino-cables.svg" alt="Arduino board" style="max-width:48%;height:auto;margin-right:2%;" />
-            <img src="assets/images/arduino-led.svg" alt="Arduino logo" style="max-width:48%;height:auto;" />
-          </div>
+      </div>
+    </section>
 
-          <div class="card">
-            <div class="codigo-box">
-              <div class="codigo-header">
-                <span>monitoreo_pines.ino (Arduino IDE)</span>
-              </div>
-              <pre>
-// Configuración de arquitectura Harvard/RISC
-const int ledPin = 13; // Pin digital integrado
+    <!-- ░░░ BLOQUE 2 — CÓDIGO ░░░ -->
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">Laboratorio</p>
+        <h2>Ejemplo de código — Blink con Serial</h2>
+        <p class="section-description">
+          El "Hola Mundo" del hardware embebido: control del LED integrado
+          y monitoreo por puerto serial.
+        </p>
+      </div>
+
+      <div class="topic-body-grid stagger">
+
+        <div class="card-comparativa full">
+          <div class="codigo-box">
+            <div class="codigo-header">monitoreo_pines.ino — Arduino IDE</div>
+            <pre>// Arquitectura Harvard/RISC — ATmega328P
+const int ledPin = 13;  // Pin digital con LED integrado
 
 void setup() {
-  pinMode(ledPin, OUTPUT);    // Configura el pin 13 como salida digital
-  Serial.begin(9600);         // Inicializa la comunicación serial a 9600 bps
+  // setup() se ejecuta UNA vez al encender o resetear
+  pinMode(ledPin, OUTPUT);   // Configura pin 13 como salida digital
+  Serial.begin(9600);        // Inicia comunicación serial a 9600 bps
 }
 
 void loop() {
-  digitalWrite(ledPin, HIGH); // Envía 5V al pin (ENCENDIDO)
-  Serial.println("LED: Encendido");
-  delay(1000);                // Retardo de 1 segundo
-  
-  digitalWrite(ledPin, LOW);  // Envía 0V al pin (APAGADO)
+  // loop() se repite indefinidamente — simula el ciclo de máquina
+  digitalWrite(ledPin, HIGH);        // Envía 5V al pin (LED encendido)
+  Serial.println("LED: Encendido");  // Envía string por puerto serial
+  delay(1000);                       // Pausa 1000 ms
+
+  digitalWrite(ledPin, LOW);         // Envía 0V al pin (LED apagado)
   Serial.println("LED: Apagado");
-  delay(1000);                // Retardo de 1 segundo
-}
-              </pre>
-            </div>
-          </div>
-          <div class="card">
-            <h3>Programación</h3>
-            <p>Arduino se programa habitualmente en C/C++ mediante el IDE de Arduino o entornos como PlatformIO. Algunas placas soportan MicroPython o CircuitPython; también es posible programarlas desde JavaScript usando Firmata y bibliotecas como Johnny-Five, o con Rust y toolchains específicos. El flujo típico consiste en escribir el sketch, compilar y subirlo vía USB al bootloader de la placa. Para empezar, el IDE oficial y los ejemplos preinstalados facilitan la curva de aprendizaje.</p>
+  delay(1000);
+}</pre>
           </div>
         </div>
-      </section>
-    </main>
 
-    <footer class="footer-note">
-      Volver al menú principal: <a class="ghost-button" href="index.html">Inicio</a>
-    </footer>
-  </div>
+        <!-- Análisis del código -->
+        <div class="card-comparativa">
+          <h3>Análisis — <code>setup()</code></h3>
+          <p style="margin-top:0.6rem;">
+            Se ejecuta una sola vez. Equivale a la fase de inicialización
+            del sistema operativo: configura registros, establece modos
+            de pin y levanta los periféricos necesarios.
+          </p>
+          <ul class="card-list" style="margin-top:0.75rem;">
+            <li><code>pinMode(13, OUTPUT)</code> escribe en el registro DDR del puerto B del ATmega</li>
+            <li><code>Serial.begin(9600)</code> inicializa el USART interno con 9600 baudios</li>
+          </ul>
+        </div>
+
+        <div class="card-comparativa">
+          <h3>Análisis — <code>loop()</code></h3>
+          <p style="margin-top:0.6rem;">
+            Se ejecuta infinitamente. Replica el ciclo fetch-decode-execute
+            del microprocesador: el programa principal que nunca termina
+            mientras haya energía.
+          </p>
+          <ul class="card-list" style="margin-top:0.75rem;">
+            <li><code>digitalWrite()</code> escribe 1 o 0 en el registro PORT del ATmega</li>
+            <li><code>delay(1000)</code> bloquea la CPU con un ciclo de espera de 1 segundo</li>
+            <li><code>Serial.println()</code> transmite bytes por el USART hacia el monitor serial</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ░░░ BLOQUE 3 — ARQUITECTURA HARVARD ░░░ -->
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">Arquitectura interna</p>
+        <h2>¿Por qué Arduino es Harvard y no Von Neumann?</h2>
+        <p class="section-description">
+          El ATmega328P usa buses separados para instrucciones y datos.
+          Esto lo diferencia del modelo clásico visto en EMU8086.
+        </p>
+      </div>
+
+      <div class="topic-body-grid stagger">
+
+        <div class="card-comparativa">
+          <h3>Arquitectura Harvard</h3>
+          <p style="margin-top:0.6rem;">
+            El ATmega328P mantiene <strong>memoria Flash separada de la RAM</strong>.
+            El bus de programa y el bus de datos son independientes:
+            la CPU puede leer la próxima instrucción mientras procesa datos del ciclo anterior.
+          </p>
+          <ul class="card-list" style="margin-top:0.85rem;">
+            <li><strong>32 KB Flash</strong> — almacena el programa (.ino compilado)</li>
+            <li><strong>2 KB SRAM</strong> — variables en tiempo de ejecución</li>
+            <li><strong>1 KB EEPROM</strong> — almacenamiento no volátil de datos</li>
+          </ul>
+        </div>
+
+        <div class="card-comparativa">
+          <h3>Harvard vs Von Neumann</h3>
+          <div class="table-wrap" style="margin-top:0.9rem;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Aspecto</th>
+                  <th>Von Neumann (8086)</th>
+                  <th>Harvard (ATmega)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Memoria</td>
+                  <td>Unificada</td>
+                  <td>Separada (Flash / SRAM)</td>
+                </tr>
+                <tr>
+                  <td>Bus</td>
+                  <td>Compartido</td>
+                  <td>Buses independientes</td>
+                </tr>
+                <tr>
+                  <td>Cuello de botella</td>
+                  <td>Sí — bus único</td>
+                  <td>No — acceso paralelo</td>
+                </tr>
+                <tr>
+                  <td>Complejidad</td>
+                  <td>Menor</td>
+                  <td>Mayor hardware</td>
+                </tr>
+                <tr>
+                  <td>Uso típico</td>
+                  <td>Propósito general</td>
+                  <td>Sistemas embebidos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card-comparativa full">
+          <h3>Programación en Arduino</h3>
+          <p style="margin-top:0.6rem;">
+            Arduino se programa en <strong>C/C++</strong> a través del IDE oficial o entornos como PlatformIO.
+            El compilador <code>avr-gcc</code> traduce el código a bytecode para el ATmega,
+            que se sube a la Flash vía USB usando el bootloader integrado.
+          </p>
+          <p>
+            El flujo es: escribir el sketch → compilar con avr-gcc → subir por USB al bootloader →
+            el ATmega ejecuta el binario desde Flash. Cada <code>upload</code> sobreescribe
+            los 32 KB de programa disponibles.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-note">
+    <a class="ghost-button" href="index.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;">← Menú principal</a>
+    <span style="opacity:0.3">///</span>
+    <span>Arquitectura de Computadoras · UNI</span>
+    <span style="opacity:0.3">///</span>
+    <a class="ghost-button" href="prueva arduino.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;border-color:rgba(226,226,255,0.2);">Examen →</a>
+  </footer>
+
+</div>
+
+<style>
+/* ── Pin badges ── */
+.pin-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pin-badge {
+  display: inline-flex;
+  padding: 0.22rem 0.6rem;
+  border-radius: var(--r-xs);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pin-badge--digital {
+  background: rgba(100,180,255,0.08);
+  color: #7ab8f5;
+  border: 1px solid rgba(100,180,255,0.18);
+}
+
+.pin-badge--analog {
+  background: rgba(255,200,80,0.08);
+  color: #e8b84a;
+  border: 1px solid rgba(255,200,80,0.18);
+}
+
+.pin-badge--power {
+  background: rgba(255,100,100,0.08);
+  color: #f07070;
+  border: 1px solid rgba(255,100,100,0.18);
+}
+
+/* ── Power pin rows ── */
+.power-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.power-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-4);
+  border: 1px solid var(--border-3);
+  border-radius: var(--r-sm);
+}
+
+.power-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  min-width: 38px;
+  flex-shrink: 0;
+}
+
+.power-desc {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+</style>
+
 </body>
 </html>
