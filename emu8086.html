@@ -3,164 +3,335 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EMU8086 - Arquitectura de Computadoras</title>
+  <title>EMU8086 — Arquitectura de Computadoras</title>
+  <meta name="description" content="Arquitectura Von Neumann, registros internos del Intel 8086 y programación en ensamblador." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page">
-  <div class="page-shell">
-    <header class="hero topic-hero">
-      <div class="topic-hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Unidades II y III</p>
-          <h1>El Microprocesador y EMU8086</h1>
-          <p class="hero-text">Comprende la arquitectura interna de los procesadores basados en Von Neumann y aprende a programar en lenguaje ensamblador para el Intel 8086.</p>
-          <div class="hero-actions">
-            <a class="cta-button" href="index.html">Volver al menú</a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <img src="assets/images/emu-pc.svg" alt="Simulación EMU8086" />
+<div class="page-shell">
+
+  <!-- ░░░ HERO ░░░ -->
+  <header class="hero topic-hero">
+    <div class="hero-topbar"></div>
+    <div class="topic-hero-grid">
+      <div class="hero-copy stagger">
+        <p class="eyebrow">Unidades II y III</p>
+        <h1>El Microprocesador y EMU8086</h1>
+        <p class="hero-text">
+          Arquitectura interna del Intel 8086, modelo Von Neumann y
+          programación directa en ensamblador con el emulador.
+        </p>
+        <div class="hero-actions">
+          <a class="cta-button" href="index.html">← Volver al menú</a>
         </div>
       </div>
-    </header>
+      <div class="hero-visual">
+        <img src="assets/images/emu-pc.svg" alt="Simulación EMU8086" />
+      </div>
+    </div>
+  </header>
 
-    <main class="content">
-      <section class="panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Teoría Avanzada</p>
-            <h2>Unidad II: Arquitectura del Microprocesador e Interfaces</h2>
-          </div>
-          <p class="section-description">Análisis del modelo de procesamiento clásico y los circuitos integrados de soporte para la comunicación con periféricos.</p>
-        </div>
+  <main class="content">
 
-        <div class="topic-body-grid">
-          <div class="card-comparativa">
-            <h3>2.1.1 Arquitectura Von Neumann</h3>
-            <p>Es la base del microprocesador tradicional (como la familia Intel x86). Su principio fundamental establece que <strong>tanto las instrucciones del programa como los datos de las variables comparten el mismo espacio de memoria física</strong> y se transportan a través de los mismos buses.</p>
-            <p class="mt-2"><em>Cuello de botella:</em> Al compartir el bus, la CPU no puede leer una instrucción y escribir un dato al mismo tiempo, lo que limita la velocidad de procesamiento.</p>
-          </div>
+    <!-- ░░░ SECCIÓN 1 — UNIDAD II ░░░ -->
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">Teoría · Unidad II</p>
+        <h2>Arquitectura del Microprocesador e Interfaces</h2>
+        <p class="section-description">Modelo de procesamiento clásico y circuitos de soporte para comunicación con periféricos.</p>
+      </div>
 
-          <div class="card-comparativa">
-            <h3>2.2 Dispositivos de Interfaz Clave</h3>
-            <p>Un microprocesador puro no puede controlar el hardware externo directamente; requiere de chips periféricos de soporte en la placa base:</p>
-            <p class="mt-2"><strong>PPI 8255 (Interfaz Periférica Programable):</strong> Chip diseñado para dotar a la CPU de puertos paralelos de Entrada/Salida. Permite configurar pines por software para leer botones o controlar actuadores y pantallas.</p>
-            <p class="mt-2"><strong>PIC 8259 (Controlador Programable de Interrupciones):</strong> Administra las interrupciones por hardware de los periféricos. Cuando un dispositivo externo requiere atención urgente, el 8259 evalúa la prioridad y le ordena a la CPU pausar su tarea actual para atender el evento.</p>
-          </div>
-        </div>
-      </section>
+      <div class="topic-body-grid stagger">
 
-      <section class="panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Laboratorio</p>
-            <h2>Unidad III: Programación en Ensamblador (EMU8086)</h2>
-          </div>
-          <p class="section-description">Guía de desarrollo de scripts y simulación de instrucciones directas a la CPU.</p>
-        </div>
-
-        <div class="topic-body-grid">
-          <div class="card-comparativa" style="grid-column: span 2;">
-            <h3>Tutorial Práctico del Emulador</h3>
-            <p>Utiliza el entorno EMU8086 para compilar, analizar los registros internos (AX, BX, CX, DX) y observar de forma interactiva el flujo de las instrucciones de bajo nivel.</p>
-          </div>
-
-          <div class="card-comparativa">
-            <h3>Caso Práctico 1: Operación Aritmética y Descomposición Numérica</h3>
-            <p><strong>Descripción del Programa:</strong> Este script ejecuta la adición de dos valores inmediatos asignados a los registros generales y procesa el resultado para su posterior despliegue en la consola del sistema.</p>
-            <p class="mt-2"><strong>Análisis de la Lógica del Código:</strong></p>
-            <p class="mt-1">Inicialmente se cargan los valores numéricos mediante las instrucciones <code>MOV AL, 15</code> (0Fh) y <code>MOV BL, 10</code> (0Ah) para efectuar la suma con <code>ADD AL, BL</code>. El acumulador almacena un resultado equivalente a 25 (19h).</p>
-            <p class="mt-1">Para representar este valor en un monitor de caracteres clásico, se aplica una técnica de descomposición matemática dividiendo el total entre diez mediante <code>DIV CL</code> (con CL=10). Esto aísla el cociente en el registro <code>AL</code> (Decenas = 2) y el residuo en <code>AH</code> (Unidades = 5).</p>
-            <p class="mt-1">Finalmente, se efectúa un ajuste sumando 48 (30h) a ambos componentes para transformarlos a sus valores correspondientes en la tabla <strong>ASCII</strong> ('2' y '5'), invocando el servicio de salida de video mediante la interrupción general del DOS <code>INT 21h</code> con el servicio de impresión <code>AH = 02h</code>.</p>
-          </div>
-
-          <figure class="feature-figure" style="background: #1a1a1e; padding: 12px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-            <img src="assets/images/Screenshot 2026-06-06 091832.png" alt="Entorno de ejecución aritmética en EMU8086" />
-            <figcaption style="color: #a0aec0; margin-top: 8px; text-align: center; font-size: 0.9rem;">Evidencia de ejecución del programa aritmético: Monitoreo activo de registros generales y despliegue del carácter "25" en el Emulator Screen.</figcaption>
-          </figure>
-
-          <div class="card-comparativa">
-            <h3>Caso Práctico 2: Segmentación de Memoria y Manejo de Cadenas de Texto</h3>
-            <p><strong>Descripción del Programa:</strong> Demostración práctica de la separación estructural entre directivas de datos y bloques funcionales de código utilizando el direccionamiento efectivo de memoria RAM.</p>
-            <p class="mt-2"><strong>Análisis de la Lógica del Código:</strong></p>
-            <p class="mt-1">El script divide de forma explícita el entorno. En el <strong>Bloque de Datos</strong>, se inicializa la variable <code>mensaje</code> en la memoria a través de la directiva de asignación de bytes <code>DB</code>, incorporando obligatoriamente el carácter especial de terminación <strong><code>$</code></strong>, el cual funciona como bandera de parada para el bus de datos en los sistemas DOS.</p>
-            <p class="mt-1">En el <strong>Bloque de Código</strong>, se configura el registro acumulador superior mediante <code>MOV AH, 09h</code>, instrucción especializada en la salida de cadenas completas de texto. Posteriormente, se utiliza la directiva <code>MOV DX, OFFSET mensaje</code>, cargando en el registro de datos la dirección física exacta de la memoria del computador donde reside el inicio del string antes de ejecutar la interrupción de hardware <code>INT 21h</code>.</p>
-          </div>
-
-          <figure class="feature-figure" style="background: #1a1a1e; padding: 12px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-            <img src="assets/images/emu-notes.svg" alt="Estructura de memoria y desensamblado" />
-            <figcaption style="color: #a0aec0; margin-top: 8px; text-align: center; font-size: 0.9rem;">Mapeo e inspección de memoria en EMU8086: Ventana de desensamblado mostrando la traducción de los códigos a bytes en formato hexadecimal.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Análisis de Ingeniería</p>
-            <h2>Validación Técnica y Control de Ejecución</h2>
-          </div>
-          <p class="section-description">Desglose de los estados internos del hardware simulado e interrupciones del sistema operativo de disco.</p>
-        </div>
-
-        <div class="topic-body-grid">
-          <div class="card-comparativa">
-            <h3>Anatomía del Banco de Registros Internos</h3>
-            <p>Durante la simulación paso a paso (<em>Single Step</em>), se verificó la manipulación directa de la arquitectura interna del Intel 8086 mediante tres categorías de registros esenciales:</p>
-            <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-muted, #e2e8f0); list-style-type: square;">
-              <li><strong>Registros de Propósito General (AX, BX, CX, DX):</strong> Operan en bloques de 16 bits, subdivididos en secciones de 8 bits (High/Low) para optimizar operaciones aritméticas complejas y conteos de ciclos.</li>
-              <li><strong>Punteros de Segmento (CS, DS, SS, ES):</strong> Delimitan físicamente las fronteras de memoria asignadas al programa, evitando colisiones entre opcodes de código y buffers de variables dinámicas.</li>
-              <li><strong>Puntero de Instrucción (IP):</strong> Indica en tiempo real la dirección de desplazamiento de la próxima instrucción lógica que será procesada por la ALU.</li>
-            </ul>
-          </div>
-
-          <div class="card-comparativa">
-            <h3>Servicios del Sistema Operativo Invocados</h3>
-            <p>La comunicación con la consola simulada se gestiona a través del vector de interrupciones de software controladas por el sistema operativo mediante la instrucción <code>INT 21h</code>. Los servicios implementados se detallan a continuación:</p>
-            <div style="overflow-x: auto; margin-top: 12px;">
-              <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
-                <thead>
-                  <tr style="border-bottom: 2px solid #3f3f46; color: #fff;">
-                    <th style="padding: 8px;">Servicio (AH)</th>
-                    <th style="padding: 8px;">Función de Hardware</th>
-                    <th style="padding: 8px;">Registro de Entrada</th>
-                    <th style="padding: 8px;">Aplicación en Reporte</th>
-                  </tr>
-                </thead>
-                <tbody style="color: #cbd5e1;">
-                  <tr style="border-bottom: 1px solid #27272a;">
-                    <td style="padding: 8px;"><code>02h</code></td>
-                    <td style="padding: 8px;">Salida de Carácter Estándar</td>
-                    <td style="padding: 8px;"><code>DL</code> (Código ASCII)</td>
-                    <td style="padding: 8px;">Impresión individual de los caracteres numéricos convertidos.</td>
-                  </tr>
-                  <tr style="border-bottom: 1px solid #27272a;">
-                    <td style="padding: 8px;"><code>09h</code></td>
-                    <td style="padding: 8px;">Salida de Cadena de Texto</td>
-                    <td style="padding: 8px;"><code>DX</code> (Dirección Offset)</td>
-                    <td style="padding: 8px;">Despliegue del buffer completo en RAM hasta el delimitador <code>$</code>.</td>
-                  </tr>
-                </tbody>
-              </table>
+        <div class="card-comparativa">
+          <p class="eyebrow" style="margin-bottom:0.75rem;">2.1.1</p>
+          <h3>Arquitectura Von Neumann</h3>
+          <p style="margin-top:0.6rem;">
+            Base del microprocesador tradicional (familia Intel x86).
+            Principio fundamental: <strong>instrucciones y datos comparten el mismo espacio de
+            memoria y los mismos buses</strong>.
+          </p>
+          <p>
+            <strong>Cuello de botella:</strong> la CPU no puede leer una instrucción
+            y escribir un dato simultáneamente. Esto limita el throughput
+            en sistemas de alta demanda.
+          </p>
+          <!-- Mini diagram inline -->
+          <div class="vonneumann-diagram" style="margin-top:1.1rem;">
+            <div class="vn-block vn-cpu"><span>CPU</span></div>
+            <div class="vn-bus">
+              <span class="vn-bus-label">Bus de datos / instrucciones</span>
+              <div class="vn-bus-line"></div>
             </div>
-          </div>
-
-          <div class="card-comparativa" style="grid-column: span 2;">
-            <h3>Flujo Dinámico: El Ciclo de Máquina en EMU8086</h3>
-            <p>Al procesar las directivas del laboratorio en modo unitario, la Unidad de Control del microprocesador ejecuta de forma cíclica las siguientes fases de bajo nivel:</p>
-            <ol style="margin-left: 20px; margin-top: 10px; color: var(--text-muted, #e2e8f0);">
-              <li style="margin-bottom: 6px;"><strong>Prebúsqueda (Fetch):</strong> La CPU extrae el byte operativo (opcode) alojado en la dirección física combinada por los registros <code>CS:IP</code> desde la memoria RAM.</li>
-              <li style="margin-bottom: 6px;"><strong>Decodificación (Decode):</strong> Los decodificadores internos de la Unidad de Control traducen el byte binario bruto (ej. <code>B4 09</code>) en una instrucción ejecutable por el procesador (<code>MOV AH, 09h</code>).</li>
-              <li style="margin-bottom: 6px;"><strong>Ejecución (Execute):</strong> La ALU abre las compuertas lógicas de los buses internos, transfiere los datos hacia los acumuladores destino y actualiza de inmediato el registro de banderas (<em>Flags</em>).</li>
-            </ol>
+            <div class="vn-block vn-mem"><span>Memoria<br/>unificada</span></div>
           </div>
         </div>
-      </section>
-    </main>
 
-    <footer class="footer-note">
-      Volver al menú principal: <a class="ghost-button" href="index.html">Inicio</a>
-    </footer>
-  </div>
+        <div class="card-comparativa">
+          <p class="eyebrow" style="margin-bottom:0.75rem;">2.2</p>
+          <h3>Dispositivos de interfaz clave</h3>
+          <p style="margin-top:0.6rem;">Un microprocesador puro no controla hardware externo directamente. Requiere chips de soporte:</p>
+          <ul class="card-list" style="margin-top:0.9rem;">
+            <li>
+              <div>
+                <strong>PPI 8255</strong> — Interfaz Periférica Programable.
+                Dota a la CPU de puertos paralelos de E/S configurables por software.
+                Lee botones, controla actuadores y pantallas.
+              </div>
+            </li>
+            <li>
+              <div>
+                <strong>PIC 8259</strong> — Controlador Programable de Interrupciones.
+                Administra las IRQ de periféricos por prioridad. Cuando un dispositivo
+                requiere atención urgente, el 8259 pausa la CPU y la redirige al ISR correcto.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ░░░ SECCIÓN 2 — CASOS PRÁCTICOS ░░░ -->
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">Laboratorio · Unidad III</p>
+        <h2>Programación en Ensamblador — EMU8086</h2>
+        <p class="section-description">Desarrollo y simulación de scripts con instrucciones directas al Intel 8086.</p>
+      </div>
+
+      <div class="topic-body-grid stagger">
+
+        <!-- Intro card full width -->
+        <div class="card-comparativa full">
+          <h3>Tutorial práctico del emulador</h3>
+          <p style="margin-top:0.6rem;">
+            EMU8086 permite compilar código, inspeccionar los registros internos
+            (<code>AX</code>, <code>BX</code>, <code>CX</code>, <code>DX</code>)
+            y observar el flujo de instrucciones de bajo nivel paso a paso
+            con <em>Single Step</em>.
+          </p>
+        </div>
+
+        <!-- Caso 1 — texto -->
+        <div class="card-comparativa">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.85rem;">
+            <span class="badge">Caso 01</span>
+            <h3 style="font-size:1rem;">Operación aritmética y descomposición numérica</h3>
+          </div>
+          <p><strong>Descripción:</strong> Suma de dos valores en registros generales, descomposición del resultado y salida en consola como caracteres ASCII.</p>
+          <p><strong>Lógica del código:</strong></p>
+          <ul class="card-list" style="margin-top:0.5rem;">
+            <li><code>MOV AL, 15</code> y <code>MOV BL, 10</code> cargan los operandos. <code>ADD AL, BL</code> almacena 25 (19h) en <code>AL</code>.</li>
+            <li><code>DIV CL</code> con <code>CL=10</code> aísla decenas en <code>AL</code> (2) y unidades en <code>AH</code> (5).</li>
+            <li>Se suma 48 (30h) a cada componente para mapear a la tabla <strong>ASCII</strong> ('2' y '5'), y se imprime con <code>INT 21h</code> / <code>AH=02h</code>.</li>
+          </ul>
+        </div>
+
+        <!-- Caso 1 — screenshot -->
+        <figure class="feature-figure" style="align-self:start;">
+          <img src="assets/images/Screenshot 2026-06-06 091832.png"
+               alt="Ejecución del programa aritmético en EMU8086 — registros AX BX CX DX y pantalla mostrando 25" />
+          <figcaption>Monitoreo de registros y salida "25" en Emulator Screen</figcaption>
+        </figure>
+
+        <!-- Caso 2 — texto -->
+        <div class="card-comparativa">
+          <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.85rem;">
+            <span class="badge">Caso 02</span>
+            <h3 style="font-size:1rem;">Segmentación de memoria y cadenas de texto</h3>
+          </div>
+          <p><strong>Descripción:</strong> Demostración de la separación entre segmento de datos y bloque de código con direccionamiento efectivo de RAM.</p>
+          <p><strong>Lógica del código:</strong></p>
+          <ul class="card-list" style="margin-top:0.5rem;">
+            <li><strong>Bloque de datos:</strong> la variable <code>mensaje</code> se define con la directiva <code>DB</code>, terminada con el delimitador <code>$</code> que funciona como bandera de parada para el bus en sistemas DOS.</li>
+            <li><strong>Bloque de código:</strong> <code>MOV AH, 09h</code> selecciona el servicio de salida de strings. <code>MOV DX, OFFSET mensaje</code> carga la dirección física del string en <code>DX</code>.</li>
+            <li><code>INT 21h</code> ejecuta la interrupción de hardware que imprime el buffer hasta encontrar el <code>$</code>.</li>
+          </ul>
+        </div>
+
+        <!-- Caso 2 — figure -->
+        <figure class="feature-figure" style="align-self:start;">
+          <img src="assets/images/emu-notes.svg"
+               alt="Mapeo de memoria en EMU8086 — ventana de desensamblado con bytes hexadecimales" />
+          <figcaption>Desensamblado: traducción de opcodes a bytes hexadecimales</figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ░░░ SECCIÓN 3 — VALIDACIÓN TÉCNICA ░░░ -->
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">Análisis de ingeniería</p>
+        <h2>Validación técnica y control de ejecución</h2>
+        <p class="section-description">Estados internos del hardware simulado e interrupciones del sistema operativo de disco.</p>
+      </div>
+
+      <div class="topic-body-grid stagger">
+
+        <!-- Registros -->
+        <div class="card-comparativa">
+          <h3>Banco de registros internos</h3>
+          <p style="margin-top:0.6rem;">
+            Durante la simulación en <em>Single Step</em> se verificaron tres categorías de registros del Intel 8086:
+          </p>
+          <ul class="card-list" style="margin-top:0.75rem;">
+            <li><strong>Propósito general (AX, BX, CX, DX):</strong> 16 bits subdivididos en High/Low de 8 bits. Operaciones aritméticas, conteos de ciclos.</li>
+            <li><strong>Punteros de segmento (CS, DS, SS, ES):</strong> delimitan las fronteras de memoria del programa, evitan colisiones entre código y variables.</li>
+            <li><strong>Puntero de instrucción (IP):</strong> indica en tiempo real la dirección de la próxima instrucción que procesará la ALU.</li>
+          </ul>
+        </div>
+
+        <!-- Tabla de servicios -->
+        <div class="card-comparativa">
+          <h3>Servicios del sistema invocados</h3>
+          <p style="margin-top:0.6rem;">
+            Comunicación con la consola simulada a través del vector de interrupciones <code>INT 21h</code>:
+          </p>
+          <div class="table-wrap" style="margin-top:0.9rem;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Servicio (AH)</th>
+                  <th>Función</th>
+                  <th>Registro</th>
+                  <th>Uso en laboratorio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>02h</code></td>
+                  <td>Salida de carácter</td>
+                  <td><code>DL</code></td>
+                  <td>Imprime los dígitos ASCII convertidos individualmente</td>
+                </tr>
+                <tr>
+                  <td><code>09h</code></td>
+                  <td>Salida de string</td>
+                  <td><code>DX</code> (offset)</td>
+                  <td>Despliega el buffer en RAM hasta el delimitador <code>$</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Ciclo de máquina — full width -->
+        <div class="card-comparativa full">
+          <h3>El ciclo de máquina en EMU8086</h3>
+          <p style="margin-top:0.6rem;">Al procesar directivas en modo unitario, la Unidad de Control ejecuta este ciclo de forma continua:</p>
+          <ol class="card-list numbered" style="margin-top:0.85rem;">
+            <li>
+              <div>
+                <strong>Fetch (Prebúsqueda):</strong> la CPU extrae el opcode alojado en la dirección combinada por <code>CS:IP</code> desde la RAM.
+              </div>
+            </li>
+            <li>
+              <div>
+                <strong>Decode (Decodificación):</strong> la Unidad de Control traduce el byte bruto
+                (ej. <code>B4 09</code>) a la instrucción ejecutable (<code>MOV AH, 09h</code>).
+              </div>
+            </li>
+            <li>
+              <div>
+                <strong>Execute (Ejecución):</strong> la ALU abre las compuertas lógicas, transfiere los datos
+                a los acumuladores destino y actualiza el registro de banderas (<em>Flags</em>).
+              </div>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-note">
+    <a class="ghost-button" href="index.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;">← Menú principal</a>
+    <span style="opacity:0.3">///</span>
+    <a class="ghost-button" href="prueva emu8086.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;border-color:rgba(226,226,255,0.2);">Examen →</a>
+    <span style="opacity:0.3">///</span>
+    <span>Arquitectura de Computadoras · UNI</span>
+  </footer>
+
+</div>
+
+<!-- Von Neumann diagram styles (scoped) -->
+<style>
+.vonneumann-diagram {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 1rem;
+}
+.vn-block {
+  flex: 0 0 auto;
+  width: 90px;
+  padding: 0.6rem 0.5rem;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-4);
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent-dim);
+  line-height: 1.4;
+}
+.vn-bus {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 0.5rem;
+}
+.vn-bus-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.vn-bus-line {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg,
+    var(--bg-4) 0%,
+    rgba(226,226,255,0.25) 30%,
+    rgba(226,226,255,0.4) 50%,
+    rgba(226,226,255,0.25) 70%,
+    var(--bg-4) 100%);
+  border-radius: 2px;
+  position: relative;
+}
+/* Animated data packet */
+.vn-bus-line::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 12px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(226,226,255,0.6);
+  animation: busPacket 2.4s var(--ease-in-out) infinite;
+}
+@keyframes busPacket {
+  0%   { transform: translateX(0);    opacity: 0; }
+  10%  { opacity: 1; }
+  45%  { transform: translateX(calc(100% - 12px)); opacity: 1; }
+  50%  { opacity: 0; transform: translateX(calc(100% - 12px)); }
+  55%  { opacity: 1; transform: translateX(calc(100% - 12px)); }
+  90%  { transform: translateX(0); opacity: 1; }
+  100% { opacity: 0; transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vn-bus-line::after { animation: none; opacity: 0.4; }
+}
+</style>
+
 </body>
 </html>

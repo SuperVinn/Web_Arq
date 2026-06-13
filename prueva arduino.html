@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examen — Arduino · Arquitectura de Computadoras</title>
+  <meta name="description" content="Cuestionario interactivo sobre arquitectura Harvard, RISC, pines PWM y microcontroladores." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      background: var(--bg-4);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-md);
+      cursor: pointer;
+      transition:
+        border-color 160ms var(--ease-out),
+        background 160ms var(--ease-out);
+      color: var(--text-2);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .option-label::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05) 50%, transparent);
+      pointer-events: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .option-label:hover {
+        border-color: rgba(226,226,255,0.2);
+        background: var(--bg-5);
+        color: var(--text);
+      }
+    }
+
+    .option-label input[type="radio"] {
+      accent-color: var(--accent);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 0.18rem;
+      cursor: pointer;
+    }
+
+    .option-correct {
+      border-color: rgba(50,220,130,0.5) !important;
+      background: rgba(50,220,130,0.07) !important;
+      color: #4ade80 !important;
+      font-weight: 600;
+    }
+
+    .option-wrong {
+      border-color: rgba(239,68,68,0.5) !important;
+      background: rgba(239,68,68,0.07) !important;
+      color: #f87171 !important;
+    }
+
+    .quiz-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .result-box {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.4rem;
+      border-radius: var(--r-lg);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      display: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1) 50%, transparent);
+    }
+
+    .result-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .result-details {
+      color: var(--text-2);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: none;
+    }
+
+    .score-accent  { color: var(--accent); font-weight: 700; }
+    .score-correct { color: #4ade80; font-weight: 600; }
+    .score-wrong   { color: #f87171; font-weight: 600; }
+
+    .q-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--bg-5);
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent-dim);
+      flex-shrink: 0;
+      margin-bottom: 0.6rem;
+    }
+  </style>
+</head>
+<body class="page">
+<div class="page-shell">
+
+  <!-- ░░░ HERO ░░░ -->
+  <header class="hero topic-hero">
+    <div class="hero-topbar"></div>
+    <div class="topic-hero-grid">
+      <div class="hero-copy stagger">
+        <p class="eyebrow">Evaluación interactiva · Unidades IV y V</p>
+        <h1>Examen Arduino</h1>
+        <p class="hero-text">
+          Filosofía RISC, arquitectura Harvard, integración de periféricos
+          y control de hardware con el ATmega328P.
+        </p>
+        <div class="hero-actions">
+          <a class="cta-button" href="arduino.html">← Volver a Arduino</a>
+          <a class="ghost-button" href="index.html">Menú principal</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/images/arduino-cables.svg" alt="Arduino — conexiones de hardware" />
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">4 preguntas · Selección múltiple</p>
+        <h2>Cuestionario de autoevaluación</h2>
+        <p class="section-description">
+          Al enviar, las respuestas incorrectas se marcan en rojo y la
+          solución correcta se revela en verde directamente en el examen.
+        </p>
+      </div>
+
+      <form id="quiz-form" style="display:flex;flex-direction:column;gap:1rem;">
+
+        <!-- Q1 -->
+        <div class="card-comparativa" id="q1-container">
+          <div class="q-number">01</div>
+          <h3>El ATmega328P se clasifica como microcontrolador embebido porque:</h3>
+          <div class="quiz-options">
+            <label class="option-label" id="lbl-q1-A">
+              <input type="radio" name="q1" value="A" />
+              <span>Requiere buses expuestos externamente en el PCB para mapear la memoria ROM.</span>
+            </label>
+            <label class="option-label" id="lbl-q1-B">
+              <input type="radio" name="q1" value="B" />
+              <span>Toda su estructura — CPU, RAM, Flash y periféricos — reside en la misma pastilla de silicio.</span>
+            </label>
+            <label class="option-label" id="lbl-q1-C">
+              <input type="radio" name="q1" value="C" />
+              <span>Usa una filosofía CISC para ejecutar instrucciones en múltiples ciclos de reloj.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="card-comparativa" id="q2-container">
+          <div class="q-number">02</div>
+          <h3>¿Cuál es la principal ventaja estructural de la arquitectura Harvard frente a Von Neumann?</h3>
+          <div class="quiz-options">
+            <label class="option-label" id="lbl-q2-A">
+              <input type="radio" name="q2" value="A" />
+              <span>Unifica datos e instrucciones en un solo espacio de direccionamiento dinámico.</span>
+            </label>
+            <label class="option-label" id="lbl-q2-B">
+              <input type="radio" name="q2" value="B" />
+              <span>Reduce las líneas físicas del bus para abaratar el costo de fabricación.</span>
+            </label>
+            <label class="option-label" id="lbl-q2-C">
+              <input type="radio" name="q2" value="C" />
+              <span>Bancos de memoria y buses independientes permiten buscar instrucciones y acceder a datos simultáneamente.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="card-comparativa" id="q3-container">
+          <div class="q-number">03</div>
+          <h3>Las arquitecturas RISC se caracterizan por:</h3>
+          <div class="quiz-options">
+            <label class="option-label" id="lbl-q3-A">
+              <input type="radio" name="q3" value="A" />
+              <span>Un repertorio optimizado de instrucciones fijas donde prácticamente el 100% se ejecuta en un solo ciclo de reloj.</span>
+            </label>
+            <label class="option-label" id="lbl-q3-B">
+              <input type="radio" name="q3" value="B" />
+              <span>Instrucciones complejas a nivel de hardware que demandan sistemas de refrigeración potentes.</span>
+            </label>
+            <label class="option-label" id="lbl-q3-C">
+              <input type="radio" name="q3" value="C" />
+              <span>Ser la base de procesadores de escritorio clásicos como el Intel 8086.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="card-comparativa" id="q4-container">
+          <div class="q-number">04</div>
+          <h3>En el Radar Automatizado, ¿por qué el servomotor MG90S se conecta a un pin PWM como el pin 9?</h3>
+          <div class="quiz-options">
+            <label class="option-label" id="lbl-q4-A">
+              <input type="radio" name="q4" value="A" />
+              <span>Para alimentar el transductor ultrasónico con ráfagas estables de 40 kHz.</span>
+            </label>
+            <label class="option-label" id="lbl-q4-B">
+              <input type="radio" name="q4" value="B" />
+              <span>Para lograr control de posición angular preciso sin sobrecargar la CPU con retardos por software.</span>
+            </label>
+            <label class="option-label" id="lbl-q4-C">
+              <input type="radio" name="q4" value="C" />
+              <span>Para recibir los ecos analógicos devueltos por los obstáculos detectados.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button type="button" class="cta-button" onclick="evaluarQuiz()">Enviar respuestas</button>
+          <button type="button" class="ghost-button" onclick="reiniciarQuiz()">Reiniciar examen</button>
+        </div>
+      </form>
+
+      <div id="result-box" class="result-box">
+        <div class="result-title" id="result-text"></div>
+        <p class="result-details" id="result-details"></p>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer-note">
+    <a class="ghost-button" href="arduino.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;">← Arduino</a>
+    <span style="opacity:0.3">///</span>
+    <span>Arquitectura de Computadoras · UNI</span>
+    <span style="opacity:0.3">///</span>
+    <a class="ghost-button" href="index.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;">Menú principal</a>
+  </footer>
+
+</div>
+
+<script>
+  const respuestasCorrectas = { q1:"B", q2:"C", q3:"A", q4:"B" };
+
+  function evaluarQuiz() {
+    const form = document.getElementById('quiz-form');
+    let nota = 0;
+    const total = Object.keys(respuestasCorrectas).length;
+
+    document.querySelectorAll('.option-label')
+      .forEach(el => el.classList.remove('option-correct','option-wrong'));
+
+    for (const key in respuestasCorrectas) {
+      const sel = form.elements[key].value;
+      const ok  = respuestasCorrectas[key];
+
+      if (!sel) {
+        document.getElementById(`lbl-${key}-${ok}`).classList.add('option-correct');
+        continue;
+      }
+
+      if (sel === ok) {
+        nota++;
+        document.getElementById(`lbl-${key}-${sel}`).classList.add('option-correct');
+      } else {
+        document.getElementById(`lbl-${key}-${sel}`).classList.add('option-wrong');
+        document.getElementById(`lbl-${key}-${ok}`).classList.add('option-correct');
+      }
+    }
+
+    const pct = Math.round((nota / total) * 100);
+    const aprobado = pct >= 70;
+
+    const box = document.getElementById('result-box');
+    box.style.display = 'block';
+    box.style.borderColor = aprobado
+      ? 'rgba(50,220,130,0.25)'
+      : 'rgba(239,68,68,0.25)';
+
+    document.getElementById('result-text').textContent =
+      aprobado ? '¡Examen aprobado! 🎉' : 'Examen no aprobado 📚';
+
+    document.getElementById('result-details').innerHTML =
+      `Acertaste <span class="score-accent">${nota}</span> de
+       <span class="score-accent">${total}</span> preguntas —
+       calificación final: <span class="score-accent">${pct}%</span>.<br><br>
+       Las respuestas incorrectas están marcadas en
+       <span class="score-wrong">rojo</span> y las correctas en
+       <span class="score-correct">verde</span> directamente en el examen.`;
+
+    box.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+
+  function reiniciarQuiz() {
+    document.getElementById('quiz-form').reset();
+    const box = document.getElementById('result-box');
+    box.style.display = 'none';
+    box.style.borderColor = '';
+    document.querySelectorAll('.option-label')
+      .forEach(el => el.classList.remove('option-correct','option-wrong'));
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+</script>
+</body>
+</html>

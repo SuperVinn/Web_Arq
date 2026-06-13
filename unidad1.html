@@ -3,64 +3,365 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fundamentos - Arquitectura de Computadoras</title>
+  <title>Fundamentos — Arquitectura de Computadoras</title>
+  <meta name="description" content="Arquitectura vs Organización y Microprocesador vs Microcontrolador." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page">
-  <div class="page-shell">
-    <header class="hero topic-hero">
-      <div class="topic-hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Fundamentos</p>
-          <h1>Arquitectura vs Organización</h1>
-          <p class="hero-text">Aprende las diferencias clave entre la arquitectura lógica y la organización física del computador.</p>
-          <div class="hero-actions">
-            <a class="cta-button" href="index.html">Volver al menú</a>
-          </div>
-          <div class="hero-card">
-            <p class="eyebrow">Resumen</p>
-            <p class="hero-card-text">Dos temas fundamentales: diseño de funciones y estructura frente a implementación interna y control de hardware.</p>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <img src="assets/images/fund-osc.svg" alt="Arquitectura de computadores" />
+<div class="page-shell">
+
+  <!-- ░░░ HERO ░░░ -->
+  <header class="hero topic-hero">
+    <div class="hero-topbar"></div>
+    <div class="topic-hero-grid">
+      <div class="hero-copy stagger">
+        <p class="eyebrow">Unidad I · Fundamentos</p>
+        <h1>Arquitectura vs Organización</h1>
+        <p class="hero-text">
+          Dos términos que definen planos distintos del mismo sistema.
+          Uno describe lo que el programador ve. El otro, cómo el
+          hardware lo ejecuta.
+        </p>
+        <div class="hero-actions">
+          <a class="cta-button" href="index.html">← Volver al menú</a>
+          <a class="ghost-button" href="emu8086.html">EMU8086 →</a>
         </div>
       </div>
-    </header>
+      <div class="hero-visual">
+        <img src="assets/images/fund-osc.svg" alt="Osciloscopio — señales de hardware" />
+      </div>
+    </div>
+  </header>
 
-    <main class="content">
-      <section class="panel">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Fundamentos</p>
-            <h2>Arquitectura vs Organización</h2>
+  <main class="content">
+
+    <!-- ░░░ BLOQUE 1 — COMPARATIVA PRINCIPAL ░░░ -->
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">Concepto central</p>
+        <h2>Arquitectura y Organización</h2>
+        <p class="section-description">
+          La misma familia de procesadores puede tener idéntica arquitectura
+          con organizaciones completamente diferentes.
+        </p>
+      </div>
+
+      <div class="topic-body-grid stagger">
+
+        <!-- Arquitectura -->
+        <div class="card-comparativa">
+          <div class="concept-tag concept-tag--a">ARQUITECTURA</div>
+          <h3 style="margin-top:0.75rem;">Diseño lógico</h3>
+          <p style="margin-top:0.5rem;">
+            Atributos del sistema <strong>visibles para el programador de bajo nivel</strong>.
+            Define el contrato entre el software y el hardware.
+          </p>
+          <ul class="card-list" style="margin-top:0.9rem;">
+            <li>Conjunto de instrucciones (ISA)</li>
+            <li>Número de bits para representación de datos</li>
+            <li>Modos y técnicas de direccionamiento de memoria</li>
+            <li>Registros visibles por el programador</li>
+          </ul>
+          <div class="concept-example">
+            <span class="eyebrow" style="font-size:0.6rem;">Ejemplo</span>
+            <p style="font-size:0.85rem;margin-top:0.3rem;max-width:none;">
+              El Intel 8086 y el Intel 8088 comparten la misma arquitectura IA-16,
+              pero tienen organizaciones internas distintas (bus de datos 16 vs 8 bits).
+            </p>
           </div>
-          <p class="section-description">Explica de forma visual y moderna cómo se diferencian los conceptos fundamentales de arquitectura y organización, junto con una comparación de microprocesadores y microcontroladores.</p>
         </div>
 
-        <div class="topic-body-grid">
-          <div class="card-comparativa">
-            <h3>Arquitectura vs Organización</h3>
-            <p><strong>Arquitectura (Diseño Lógico):</strong> Atributos del sistema visibles para el programador de bajo nivel. Incluye el conjunto de instrucciones (ISA), número de bits para datos y técnicas de direccionamiento.</p>
-            <p class="mt-2"><strong>Organización (Implementación Física):</strong> Cómo se conectan operativamente los componentes. Incluye señales de control de buses, interfaces de memoria y la tecnología de los circuitos.</p>
-          </div>
-
-          <figure class="feature-figure">
-            <img src="assets/images/fund-chip.svg" alt="Circuito de computadora" />
-            <figcaption>Comparativas visuales que ayudan a entender arquitectura y organización.</figcaption>
-          </figure>
-          <div class="card-comparativa">
-            <h3>Microprocesador vs Microcontrolador</h3>
-            <p><strong>Microprocesador (μP):</strong> Circuito integrado que aloja únicamente la CPU (Ej: familia ix86). Requiere memoria RAM, ROM y periféricos externos para funcionar en una placa base.</p>
-            <p class="mt-2"><strong>Microcontrolador (μC):</strong> Un sistema computacional completo integrado en un solo chip de silicio (Ej: ATmega328P de Arduino). Contiene internamente la CPU, RAM, memoria Flash y puertos E/S.</p>
+        <!-- Organización -->
+        <div class="card-comparativa">
+          <div class="concept-tag concept-tag--b">ORGANIZACIÓN</div>
+          <h3 style="margin-top:0.75rem;">Implementación física</h3>
+          <p style="margin-top:0.5rem;">
+            Cómo se conectan y controlan los componentes <strong>a nivel de circuito</strong>.
+            Invisible para el programador, determinante para el rendimiento.
+          </p>
+          <ul class="card-list" style="margin-top:0.9rem;">
+            <li>Señales de control de buses internos</li>
+            <li>Interfaces de memoria y caché</li>
+            <li>Tecnología de los circuitos (CMOS, TTL)</li>
+            <li>Diseño del datapath y la ALU</li>
+          </ul>
+          <div class="concept-example">
+            <span class="eyebrow" style="font-size:0.6rem;">Ejemplo</span>
+            <p style="font-size:0.85rem;margin-top:0.3rem;max-width:none;">
+              Dos CPUs con el mismo ISA x86 pueden diferir radicalmente en número de
+              etapas de pipeline, tamaño de caché y frecuencia de reloj.
+            </p>
           </div>
         </div>
-      </section>
-    </main>
 
-    <footer class="footer-note">
-      Volver al menú principal: <a class="ghost-button" href="index.html">Inicio</a>
-    </footer>
-  </div>
+        <!-- Relación entre los dos -->
+        <div class="card-comparativa full">
+          <h3>¿Cómo se relacionan?</h3>
+          <div class="relation-grid" style="margin-top:1rem;">
+            <div class="relation-node">
+              <span class="relation-label">Arquitectura</span>
+              <p>Define el <em>qué</em>: el conjunto de capacidades y el contrato con el software.</p>
+            </div>
+            <div class="relation-arrow">
+              <div class="arrow-line"></div>
+              <span class="arrow-label">implementada por</span>
+            </div>
+            <div class="relation-node">
+              <span class="relation-label">Organización</span>
+              <p>Define el <em>cómo</em>: los circuitos físicos que ejecutan esas capacidades.</p>
+            </div>
+          </div>
+          <p style="margin-top:1rem;font-size:0.9rem;">
+            Un fabricante puede lanzar múltiples generaciones de procesadores con la
+            <strong>misma arquitectura</strong> (compatibilidad de software)
+            mejorando la organización interna en cada iteración para aumentar el rendimiento.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ░░░ BLOQUE 2 — μP vs μC ░░░ -->
+    <section class="panel">
+      <div class="section-heading">
+        <p class="eyebrow">Segundo concepto</p>
+        <h2>Microprocesador vs Microcontrolador</h2>
+        <p class="section-description">
+          Misma idea de "CPU en un chip", distinto nivel de integración
+          y distinto escenario de uso.
+        </p>
+      </div>
+
+      <div class="topic-body-grid stagger">
+
+        <!-- μP card -->
+        <div class="card-comparativa">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.85rem;">
+            <figure class="mini-visual">
+              <img src="assets/images/fund-chip.svg" alt="Microprocesador" />
+            </figure>
+            <div>
+              <span class="badge">μP</span>
+              <h3 style="margin-top:0.4rem;">Microprocesador</h3>
+            </div>
+          </div>
+          <p>
+            Circuito integrado que contiene <strong>únicamente la CPU</strong>.
+            Para funcionar necesita componentes externos en la placa base.
+          </p>
+          <ul class="card-list" style="margin-top:0.75rem;">
+            <li>Requiere RAM y ROM externas</li>
+            <li>Necesita controladores de periféricos separados</li>
+            <li>Alta capacidad de cómputo, arquitecturas complejas</li>
+            <li><strong>Ej:</strong> familia Intel x86, AMD Ryzen</li>
+          </ul>
+          <div class="concept-example" style="margin-top:0.9rem;">
+            <p style="font-size:0.85rem;max-width:none;">
+              Pensá en la PC de escritorio: el microprocesador es solo uno de los
+              muchos chips de la placa madre.
+            </p>
+          </div>
+        </div>
+
+        <!-- μC card -->
+        <div class="card-comparativa">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.85rem;">
+            <figure class="mini-visual">
+              <img src="assets/images/fund-breadboard.svg" alt="Microcontrolador en protoboard" />
+            </figure>
+            <div>
+              <span class="badge">μC</span>
+              <h3 style="margin-top:0.4rem;">Microcontrolador</h3>
+            </div>
+          </div>
+          <p>
+            Sistema computacional completo integrado <strong>en un solo chip</strong>.
+            CPU, memoria y periféricos conviven en el mismo die de silicio.
+          </p>
+          <ul class="card-list" style="margin-top:0.75rem;">
+            <li>CPU + RAM + Flash + puertos E/S integrados</li>
+            <li>Bajo consumo, tamaño reducido, bajo costo</li>
+            <li>Orientado a control de sistemas embebidos</li>
+            <li><strong>Ej:</strong> ATmega328P (Arduino Uno)</li>
+          </ul>
+          <div class="concept-example" style="margin-top:0.9rem;">
+            <p style="font-size:0.85rem;max-width:none;">
+              El microcontrolador del Arduino es el chip completo:
+              no necesita RAM externa ni controladora de periféricos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tabla comparativa -->
+        <div class="card-comparativa full">
+          <h3>Comparativa directa</h3>
+          <div class="table-wrap" style="margin-top:0.9rem;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Característica</th>
+                  <th>Microprocesador (μP)</th>
+                  <th>Microcontrolador (μC)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Integración</td>
+                  <td>Solo CPU</td>
+                  <td>CPU + RAM + Flash + E/S</td>
+                </tr>
+                <tr>
+                  <td>Memoria</td>
+                  <td>Externa (placa base)</td>
+                  <td>Integrada en el chip</td>
+                </tr>
+                <tr>
+                  <td>Potencia de cómputo</td>
+                  <td>Alta</td>
+                  <td>Media-baja</td>
+                </tr>
+                <tr>
+                  <td>Consumo energético</td>
+                  <td>Alto</td>
+                  <td>Muy bajo</td>
+                </tr>
+                <tr>
+                  <td>Aplicación típica</td>
+                  <td>PC, servidores, laptops</td>
+                  <td>Sistemas embebidos, IoT, robótica</td>
+                </tr>
+                <tr>
+                  <td>Ejemplo</td>
+                  <td>Intel Core i7, AMD Ryzen</td>
+                  <td>ATmega328P, ESP32, STM32</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-note">
+    <a class="ghost-button" href="index.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;">← Menú principal</a>
+    <span style="opacity:0.3">///</span>
+    <span>Arquitectura de Computadoras · UNI</span>
+    <span style="opacity:0.3">///</span>
+    <a class="ghost-button" href="emu8086.html" style="font-size:0.82rem;padding:0.4rem 0.85rem;">EMU8086 →</a>
+  </footer>
+
+</div>
+
+<style>
+/* ── Concept tags ── */
+.concept-tag {
+  display: inline-flex;
+  padding: 0.22rem 0.7rem;
+  border-radius: var(--r-xs);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+.concept-tag--a {
+  background: rgba(100,180,255,0.08);
+  color: #7ab8f5;
+  border: 1px solid rgba(100,180,255,0.18);
+}
+.concept-tag--b {
+  background: rgba(160,255,180,0.07);
+  color: #7ae89a;
+  border: 1px solid rgba(160,255,180,0.16);
+}
+
+/* ── Concept example box ── */
+.concept-example {
+  margin-top: 1rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--bg-4);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-3);
+  border-left: 2px solid rgba(226,226,255,0.15);
+}
+
+/* ── Relation diagram ── */
+.relation-grid {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.relation-node {
+  flex: 1 1 160px;
+  background: var(--bg-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 0.85rem 1rem;
+}
+.relation-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent-dim);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.relation-node p {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  max-width: none;
+  margin: 0;
+}
+.relation-arrow {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 0.75rem;
+  min-width: 80px;
+}
+.arrow-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.arrow-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(226,226,255,0.15), rgba(226,226,255,0.4), rgba(226,226,255,0.15));
+  position: relative;
+}
+.arrow-line::after {
+  content: "";
+  position: absolute;
+  right: -1px; top: -4px;
+  border: 4px solid transparent;
+  border-left-color: rgba(226,226,255,0.4);
+}
+
+/* ── Mini visual inside card ── */
+.mini-visual {
+  width: 64px; height: 48px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--bg-4);
+  border: 1px solid var(--border-2);
+  display: grid;
+  place-items: center;
+  padding: 0.4rem;
+}
+.mini-visual img { width: 100%; height: auto; object-fit: contain; }
+</style>
+
 </body>
 </html>
